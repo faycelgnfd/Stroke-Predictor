@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  django:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    volumes:
+      - django_static_volume:/usr/src/app/static
+    ports:
+      - "8000:8000"
+   
+    command: python manage.py runserver 0.0.0.0:8000
+  
+ 
+
+volumes:
+  django_static_volume:
