@@ -11,8 +11,27 @@ services:
       - "8000:8000"
    
     command: python manage.py runserver 0.0.0.0:8000
+  react:
+      image: docker-react-i
+
+      build:
+        context: ./front-end
+        dockerfile: Dockerfile
+        args:
+          - API_SERVER=${ENV_API_SERVER}
+      volumes:
+        - react_static_volume:/usr/src/app/build/static
+      expose:
+        - 3000
+      env_file:
+        - .env
+  
+      depends_on:
+        - django
+
   
  
 
 volumes:
   django_static_volume:
+  react_static_volume:
