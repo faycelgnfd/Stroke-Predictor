@@ -2,9 +2,7 @@ version: "3.7"
 
 services:
   django:
-    build:
-      context: ./src
-      dockerfile: Dockerfile
+    image: faycelgnfd/stroke-predictor-back 
     volumes:
       - django_static_volume:/usr/src/app/static
     ports:
@@ -12,11 +10,7 @@ services:
    
     command: python manage.py runserver 0.0.0.0:8000
   react:
-      image: docker-react-i
-
-      build:
-        context: ./front-end
-        dockerfile: Dockerfile
+      image: faycelgnfd/stroke-predictor-front
         args:
           - API_SERVER=${ENV_API_SERVER}
       volumes:
