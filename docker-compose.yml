@@ -11,12 +11,10 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
   react:
       image: faycelgnfd/stroke-predictor-front
-        args:
-          - API_SERVER=${ENV_API_SERVER}
       volumes:
         - react_static_volume:/usr/src/app/build/static
-      expose:
-        - 3000
+      ports:
+        - "3000:3000"
       env_file:
         - .env
   
